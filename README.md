@@ -85,31 +85,6 @@ cd server
 npm run migrate
 ```
 
-The migration does not import or delete MongoDB data.
-
-Income uses a separate additive `income` table rather than a unified transactions
-table. This preserves the existing expense and budget schemas, API response
-contracts, ownership rules, and legacy data while allowing PostgreSQL to combine
-income and expense aggregates for the finance dashboard. Migration
-`003_create_income.sql` is applied by the same tracked migration runner.
-
-Recurring schedules use additive migration `004_create_recurring_transactions.sql`.
-The migration creates owner-scoped schedules and a unique occurrence ledger for
-database-level idempotency. Schedules are reminders/manual confirmations by
-default; automatic generation occurs only when enabled for a schedule and the
-user explicitly selects **Process due automatic schedules**. The recurring
-screen uses date-based scheduling in UTC, preserves monthly/yearly day anchors
-through short months, and processes missed dates transactionally. Do not apply
-this migration to an application database without explicit approval.
-
-Reports are available through authenticated `/api/reports` and
-`/api/reports/csv` endpoints. CSV values are escaped and spreadsheet formula
-prefixes are neutralized before export. Savings goals use additive migration
-`005_create_savings_goals.sql`; goal allocations are intentionally separate
-from income and expense cash-flow totals, and withdrawals cannot exceed the
-goal's allocated balance. Password changes are available through the
-authenticated `/api/auth/change-password` and `/api/auth/profile` endpoints.
-
 ### 4. Start the Backend
 
 ```bash
@@ -160,5 +135,4 @@ The app will open at `http://localhost:3000`.
 
 - Authentication uses bcrypt password hashing and JWTs in HttpOnly cookies.
 - Expense queries are scoped to the authenticated user.
-- MongoDB data is not imported automatically; any future import must be explicit and separate.
 - 📝 **No TypeScript** — Written in plain JavaScript.
