@@ -12,11 +12,24 @@ A full-stack expense tracking application built with React, Express, and Postgre
 - **CSS** — Custom styling for a responsive UI
 
 ## Features
+ - **Dashboard:** View income, expenses, net cash flow, savings rate, and financial trends.
 
-- 📊 **Dashboard** — View total expenses, monthly spending, and category breakdown at a glance
-- ➕ **Add / Edit / Delete Expenses** — Full CRUD operations for managing your expenses
-- 🔍 **Search & Filter** — Search by title, filter by category, date range, and payment method
-- 📱 **Responsive UI** — Works on desktop, tablet, and mobile devices
+- **Expense Management:** Create, edit, delete, search, filter, sort, and paginate expenses.
+
+- **Income Tracking:** Manage income records independently from expenses.
+
+- **Budgets:** Set monthly and category-specific budgets and monitor spending thresholds.
+
+- **Recurring Transactions:** Schedule recurring income and expenses with manual confirmation or explicitly enabled automatic generation.
+
+- **Financial Reports:** Review date-range reports, category breakdowns, and monthly comparisons.
+- **CSV Export:** Export financial records and reports.
+
+- **Savings Goals:** Set targets, track contributions, and manage withdrawals.
+
+- **Authentication:** Secure account access with password hashing and HttpOnly authentication cookies.
+
+- **Responsive UI:** Designed for desktop, tablet, and mobile devices.
 
 ## Project Structure
 
