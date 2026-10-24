@@ -8,6 +8,9 @@ const {
   deleteExpense,
   getSummary,
 } = require('../controllers/expenseController');
+const { protect } = require('../middleware/authMiddleware');
+
+router.use(protect);
 
 // GET /api/expenses/summary — must be before /:id to avoid conflict
 router.get('/summary', getSummary);

@@ -4,6 +4,7 @@
   left: 0;
   width: 240px;
   height: 100vh;
+  overflow: hidden;
   background: #F0F4FF;
   display: flex;
   flex-direction: column;
@@ -91,9 +92,9 @@
 .sidebar-mobile-toggle {
   display: none;
   position: fixed;
-  top: 16px;
-  left: 16px;
-  z-index: 200;
+  top: 8px;
+  left: 12px;
+  z-index: 250;
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
   border-radius: 8px;
@@ -127,6 +128,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .sidebar {
+    top: 56px;
+    height: calc(100vh - 56px);
+    z-index: 240;
   }
 
   .sidebar-overlay {

@@ -1,0 +1,12 @@
+const express = require('express');
+const { protect } = require('../middleware/authMiddleware');
+const controller = require('../controllers/recurringController');
+const router = express.Router();
+router.use(protect);
+router.get('/', controller.list);
+router.post('/', controller.create);
+router.post('/process-due', controller.processDue);
+router.put('/:id', controller.update);
+router.patch('/:id/status', controller.setActive);
+router.delete('/:id', controller.remove);
+module.exports = router;

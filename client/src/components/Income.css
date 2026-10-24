@@ -1,0 +1,11 @@
+.income-container { width: 100%; max-width: 1100px; }
+.income-header { margin-bottom: 24px; }
+.income-form { margin-bottom: 20px; }
+.income-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 16px; }
+.income-form .btn-clear-filters { margin-left: 8px; }
+.income-filters { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.income-filters .search-input { flex: 1; min-width: 220px; }
+.income-filters .filter-select { min-width: 150px; }
+.income-container small { display: block; color: #64748B; margin-top: 4px; }
+.pagination-controls { display: flex; justify-content: center; align-items: center; gap: 14px; margin-top: 18px; }
+@media (max-width: 700px) { .income-form-grid { grid-template-columns: 1fr; } }

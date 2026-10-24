@@ -26,6 +26,13 @@ const categories = [
   'Education',
   'Other',
 ];
+const paymentMethods = ['All Payment Methods', 'Cash', 'UPI', 'Card', 'Other'];
+const sortOptions = [
+  { label: 'Newest first', value: 'newest' },
+  { label: 'Oldest first', value: 'oldest' },
+  { label: 'Amount: high to low', value: 'amountDesc' },
+  { label: 'Amount: low to high', value: 'amountAsc' },
+];
 
 const dateRanges = [
   { label: 'All Dates', value: 'all' },
@@ -88,6 +95,8 @@ const ExpenseList = ({ onEdit, onNavigate, refreshKey }) => {
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('All Categories');
   const [dateRange, setDateRange] = useState('all');
+  const [paymentMethod, setPaymentMethod] = useState('All Payment Methods');
+  const [sort, setSort] = useState('newest');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [totalExpenses, setTotalExpenses] = useState(0);
@@ -109,6 +118,8 @@ const ExpenseList = ({ onEdit, onNavigate, refreshKey }) => {
         category: category !== 'All Categories' ? category : undefined,
         startDate: startDate || undefined,
         endDate: endDate || undefined,
+        paymentMethod: paymentMethod !== 'All Payment Methods' ? paymentMethod : undefined,
+        sort,
       };
 
       const res = await getExpenses(params);
@@ -121,7 +132,7 @@ const ExpenseList = ({ onEdit, onNavigate, refreshKey }) => {
     } finally {
       setLoading(false);
     }
-  }, [page, search, category, dateRange]);
+  }, [page, search, category, dateRange, paymentMethod, sort]);
 
   useEffect(() => {
     fetchExpenses();
@@ -142,10 +153,17 @@ const ExpenseList = ({ onEdit, onNavigate, refreshKey }) => {
     setPage(1);
   };
 
+  const handlePaymentMethodChange = (e) => {
+    setPaymentMethod(e.target.value);
+    setPage(1);
+  };
+
   const handleClearFilters = () => {
     setSearch('');
     setCategory('All Categories');
     setDateRange('all');
+    setPaymentMethod('All Payment Methods');
+    setSort('newest');
     setPage(1);
   };
 
@@ -168,12 +186,6 @@ const ExpenseList = ({ onEdit, onNavigate, refreshKey }) => {
 
   return (
     <div className="expense-list-container">
-      {/* Page Header */}
-      <div className="expense-list-header">
-        <h1 className="expense-list-title">All Expenses</h1>
-        <p className="expense-list-subtitle">View and manage all your expenses. Newest first.</p>
-      </div>
-
       {/* Filter Toolbar */}
       <div className="filters-card">
         <div className="filters-row">
@@ -183,10 +195,24 @@ const ExpenseList = ({ onEdit, onNavigate, refreshKey }) => {
             <input
               type="text"
               className="search-input"
-              placeholder="Search by title..."
+              placeholder="Search by title or description..."
               value={search}
               onChange={handleSearchChange}
             />
+          </div>
+
+          <div className="filter-dropdown-wrapper">
+            <label className="filter-label">Payment</label>
+            <select className="filter-select" value={paymentMethod} onChange={handlePaymentMethodChange}>
+              {paymentMethods.map((method) => <option key={method} value={method}>{method}</option>)}
+            </select>
+          </div>
+
+          <div className="filter-dropdown-wrapper">
+            <label className="filter-label">Sort</label>
+            <select className="filter-select" value={sort} onChange={(e) => { setSort(e.target.value); setPage(1); }}>
+              {sortOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+            </select>
           </div>
 
           {/* Category dropdown */}
@@ -256,7 +282,7 @@ const ExpenseList = ({ onEdit, onNavigate, refreshKey }) => {
           <div className="table-empty">
             <p className="empty-title">No expenses found</p>
             <p className="empty-subtitle">
-              {search || category !== 'All Categories' || dateRange !== 'all'
+              {search || category !== 'All Categories' || dateRange !== 'all' || paymentMethod !== 'All Payment Methods'
                 ? 'Try adjusting your search or filters.'
                 : 'Get started by adding your first expense.'}
             </p>

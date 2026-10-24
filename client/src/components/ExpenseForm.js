@@ -44,6 +44,7 @@ const ExpenseForm = ({ editingExpense, onSave, onCancel }) => {
 
   const initialFormState = {
     title: '',
+    description: '',
     amount: '',
     category: 'Food',
     date: getTodayString(),
@@ -59,6 +60,7 @@ const ExpenseForm = ({ editingExpense, onSave, onCancel }) => {
     if (editingExpense) {
       setFormData({
         title: editingExpense.title || '',
+        description: editingExpense.description || '',
         amount: editingExpense.amount || '',
         category: editingExpense.category || 'Food',
         date: editingExpense.date ? editingExpense.date.substring(0, 10) : getTodayString(),
@@ -123,6 +125,7 @@ const ExpenseForm = ({ editingExpense, onSave, onCancel }) => {
       setServerError('');
       const payload = {
         title: formData.title.trim(),
+        description: formData.description.trim() || undefined,
         amount: Number(formData.amount),
         category: formData.category,
         date: formData.date,
@@ -151,6 +154,7 @@ const ExpenseForm = ({ editingExpense, onSave, onCancel }) => {
     if (isEditing && editingExpense) {
       setFormData({
         title: editingExpense.title || '',
+        description: editingExpense.description || '',
         amount: editingExpense.amount || '',
         category: editingExpense.category || 'Food',
         date: editingExpense.date ? editingExpense.date.substring(0, 10) : getTodayString(),
@@ -167,17 +171,6 @@ const ExpenseForm = ({ editingExpense, onSave, onCancel }) => {
 
   return (
     <div className="expense-form-container">
-      <div className="expense-form-header">
-        <h1 className="expense-form-title">
-          {isEditing ? 'Edit Expense' : 'Add Expense'}
-        </h1>
-        <p className="expense-form-subtitle">
-          {isEditing
-            ? 'Update the details below for this expense.'
-            : 'Fill in the details below to add a new expense.'}
-        </p>
-      </div>
-
       <div className="expense-form-card">
         {serverError && <div className="expense-form-alert error">{serverError}</div>}
 
@@ -219,7 +212,22 @@ const ExpenseForm = ({ editingExpense, onSave, onCancel }) => {
                   onChange={handleChange}
                 />
               </div>
+
               {errors.amount && <span className="field-error">{errors.amount}</span>}
+            </div>
+
+            <div className="form-group form-group--full">
+              <label className="form-label" htmlFor="description">Description</label>
+              <textarea
+                id="description"
+                name="description"
+                className="form-input"
+                placeholder="Add optional notes about this expense"
+                maxLength="500"
+                rows="3"
+                value={formData.description}
+                onChange={handleChange}
+              />
             </div>
 
             {/* Category dropdown */}

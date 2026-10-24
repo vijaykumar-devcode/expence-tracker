@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:5000/api/expenses' });
+const API = axios.create({
+  baseURL: '/api/expenses',
+  withCredentials: true,
+});
 
 export const getExpenses = async (params) => {
   const { data } = await API.get('/', { params });

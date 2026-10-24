@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { HomeIcon, PlusCircleIcon, ListIcon, WalletIcon, MenuIcon, CloseIcon } from './Icons';
+import { HomeIcon, PlusCircleIcon, ListIcon, WalletIcon, MenuIcon, CloseIcon, CalendarIcon } from './Icons';
 import './Sidebar.css';
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: HomeIcon },
   { id: 'add', label: 'Add Expense', icon: PlusCircleIcon },
   { id: 'expenses', label: 'All Expenses', icon: ListIcon },
+  { id: 'budgets', label: 'Budgets', icon: CalendarIcon },
+  { id: 'income', label: 'Income', icon: WalletIcon },
+  { id: 'recurring', label: 'Recurring', icon: CalendarIcon },
+  { id: 'reports', label: 'Reports', icon: ListIcon },
+  { id: 'goals', label: 'Savings Goals', icon: WalletIcon },
+  { id: 'settings', label: 'Settings', icon: CalendarIcon },
 ];
 
 const Sidebar = ({ currentPage, onNavigate }) => {
@@ -29,7 +35,7 @@ const Sidebar = ({ currentPage, onNavigate }) => {
           <div className="sidebar-logo-icon">
             <WalletIcon size={22} color="#FFFFFF" />
           </div>
-          <span className="sidebar-logo-text">Expense Tracker</span>
+          <span className="sidebar-logo-text">Finora</span>
         </div>
 
         <nav className="sidebar-nav">
