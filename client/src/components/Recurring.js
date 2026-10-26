@@ -78,15 +78,15 @@ const Recurring = ({ onChanged }) => {
       {error && <div className="table-error">{error}</div>}
       <form className="expense-form-card recurring-form" onSubmit={submit}>
         <div className="recurring-grid">
-          <select className="form-select" name="type" value={form.type} onChange={change}><option value="expense">Expense</option><option value="income">Income</option></select>
-          <input className="form-input" name="title" placeholder="Title" value={form.title} onChange={change} required maxLength="100" />
-          <input className="form-input" name="amount" type="number" min="0.01" step="0.01" placeholder="Amount" value={form.amount} onChange={change} required />
-          <select className="form-select" name="category" value={form.category} onChange={change}><option value="">No category</option>{categories.map((item) => <option key={item}>{item}</option>)}</select>
-          <select className="form-select" name="paymentMethod" value={form.paymentMethod} onChange={change}><option value="">No payment method</option>{paymentMethods.map((item) => <option key={item}>{item}</option>)}</select>
-          <select className="form-select" name="frequency" value={form.frequency} onChange={change}><option value="daily">Daily</option><option value="weekly">Weekly</option><option value="monthly">Monthly</option><option value="yearly">Yearly</option></select>
-          <input className="form-input" name="startDate" type="date" value={form.startDate} onChange={change} required />
-          <input className="form-input" name="endDate" type="date" value={form.endDate} onChange={change} />
-          <input className="form-input recurring-wide" name="description" placeholder="Description (optional)" value={form.description} onChange={change} maxLength="500" />
+          <label className="sr-only" htmlFor="recurring-type">Transaction type</label><select id="recurring-type" className="form-select" name="type" value={form.type} onChange={change}><option value="expense">Expense</option><option value="income">Income</option></select>
+          <label className="sr-only" htmlFor="recurring-title">Title</label><input id="recurring-title" className="form-input" name="title" placeholder="Title" value={form.title} onChange={change} required maxLength="100" />
+          <label className="sr-only" htmlFor="recurring-amount">Amount</label><input id="recurring-amount" className="form-input" name="amount" type="number" min="0.01" step="0.01" placeholder="Amount" value={form.amount} onChange={change} required />
+          <label className="sr-only" htmlFor="recurring-category">Category</label><select id="recurring-category" className="form-select" name="category" value={form.category} onChange={change}><option value="">No category</option>{categories.map((item) => <option key={item}>{item}</option>)}</select>
+          <label className="sr-only" htmlFor="recurring-payment">Payment method</label><select id="recurring-payment" className="form-select" name="paymentMethod" value={form.paymentMethod} onChange={change}><option value="">No payment method</option>{paymentMethods.map((item) => <option key={item}>{item}</option>)}</select>
+          <label className="sr-only" htmlFor="recurring-frequency">Frequency</label><select id="recurring-frequency" className="form-select" name="frequency" value={form.frequency} onChange={change}><option value="daily">Daily</option><option value="weekly">Weekly</option><option value="monthly">Monthly</option><option value="yearly">Yearly</option></select>
+          <label className="sr-only" htmlFor="recurring-start-date">Start date</label><input id="recurring-start-date" className="form-input" name="startDate" type="date" value={form.startDate} onChange={change} required />
+          <label className="sr-only" htmlFor="recurring-end-date">End date</label><input id="recurring-end-date" className="form-input" name="endDate" type="date" value={form.endDate} onChange={change} />
+          <label className="sr-only" htmlFor="recurring-description">Description</label><input id="recurring-description" className="form-input recurring-wide" name="description" placeholder="Description (optional)" value={form.description} onChange={change} maxLength="500" />
         </div>
         <label className="recurring-consent"><input type="checkbox" name="autoGenerate" checked={form.autoGenerate} onChange={change} /> Automatically create due transactions when I press “Process due”</label>
         <div><button className="btn-add-expense" type="submit" disabled={busy}>{editing ? 'Update Schedule' : 'Create Schedule'}</button>{editing && <button className="btn-clear-filters" type="button" onClick={() => { setEditing(null); setForm(initial); }}>Cancel</button>}</div>

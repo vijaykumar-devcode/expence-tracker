@@ -193,6 +193,8 @@ const ExpenseList = ({ onEdit, onNavigate, refreshKey }) => {
           <div className="search-box">
             <SearchIcon size={18} color="#94A3B8" className="search-icon" />
             <input
+              id="expense-search"
+              name="search"
               type="text"
               className="search-input"
               placeholder="Search by title or description..."
@@ -202,23 +204,25 @@ const ExpenseList = ({ onEdit, onNavigate, refreshKey }) => {
           </div>
 
           <div className="filter-dropdown-wrapper">
-            <label className="filter-label">Payment</label>
-            <select className="filter-select" value={paymentMethod} onChange={handlePaymentMethodChange}>
+            <label className="filter-label" htmlFor="expense-payment">Payment</label>
+            <select id="expense-payment" name="paymentMethod" className="filter-select" value={paymentMethod} onChange={handlePaymentMethodChange}>
               {paymentMethods.map((method) => <option key={method} value={method}>{method}</option>)}
             </select>
           </div>
 
           <div className="filter-dropdown-wrapper">
-            <label className="filter-label">Sort</label>
-            <select className="filter-select" value={sort} onChange={(e) => { setSort(e.target.value); setPage(1); }}>
+            <label className="filter-label" htmlFor="expense-sort">Sort</label>
+            <select id="expense-sort" name="sort" className="filter-select" value={sort} onChange={(e) => { setSort(e.target.value); setPage(1); }}>
               {sortOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
             </select>
           </div>
 
           {/* Category dropdown */}
           <div className="filter-dropdown-wrapper">
-            <label className="filter-label">Category</label>
+            <label className="filter-label" htmlFor="expense-category">Category</label>
             <select
+              id="expense-category"
+              name="category"
               className="filter-select"
               value={category}
               onChange={handleCategoryChange}
@@ -233,8 +237,10 @@ const ExpenseList = ({ onEdit, onNavigate, refreshKey }) => {
 
           {/* Date Range dropdown */}
           <div className="filter-dropdown-wrapper">
-            <label className="filter-label">Date Range</label>
+            <label className="filter-label" htmlFor="expense-date-range">Date Range</label>
             <select
+              id="expense-date-range"
+              name="dateRange"
               className="filter-select"
               value={dateRange}
               onChange={handleDateRangeChange}

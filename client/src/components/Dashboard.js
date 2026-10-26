@@ -113,7 +113,7 @@ const Dashboard = ({ user, onNavigate, refreshKey }) => {
             <h2>Hi {greetingName}</h2>
             <p>Here's your financial overview of this month</p>
           </div>
-          <input className="filter-select" type="month" value={month} onChange={(e) => setMonth(e.target.value)} aria-label="Dashboard month" />
+          <input id="dashboard-month" name="dashboardMonth" className="filter-select" type="month" value={month} onChange={(e) => setMonth(e.target.value)} aria-label="Dashboard month" />
         </div>
       </div>
 

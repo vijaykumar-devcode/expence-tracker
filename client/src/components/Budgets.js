@@ -54,10 +54,12 @@ const Budgets = ({ onChanged }) => {
         <label className="filter-label" htmlFor="budget-month">Month</label>
         <input id="budget-month" className="filter-select" type="month" value={month.slice(0, 7)} onChange={(e) => setMonth(`${e.target.value}-01`)} />
         <form className="budget-form" onSubmit={submit}>
-          <select className="filter-select" value={category} onChange={(e) => setCategory(e.target.value)}>
+          <label className="sr-only" htmlFor="budget-category">Budget category</label>
+          <select id="budget-category" name="category" className="filter-select" value={category} onChange={(e) => setCategory(e.target.value)}>
             {categories.map((item) => <option key={item}>{item}</option>)}
           </select>
-          <input className="filter-select" type="number" min="0.01" step="0.01" placeholder="Amount" value={amount} onChange={(e) => setAmount(e.target.value)} required />
+          <label className="sr-only" htmlFor="budget-amount">Budget amount</label>
+          <input id="budget-amount" name="amount" className="filter-select" type="number" min="0.01" step="0.01" placeholder="Amount" value={amount} onChange={(e) => setAmount(e.target.value)} required />
           <button className="btn-add-expense" type="submit">Add Budget</button>
         </form>
       </div>
