@@ -12,7 +12,8 @@ A full-stack expense tracking application built with React, Express, and Postgre
 - **CSS** — Custom styling for a responsive UI
 
 ## Features
- - **Dashboard:** View income, expenses, net cash flow, savings rate, and financial trends.
+
+- **Dashboard:** View income, expenses, net cash flow, savings rate, and financial trends.
 
 - **Expense Management:** Create, edit, delete, search, filter, sort, and paginate expenses.
 
@@ -146,7 +147,7 @@ The app will open at `http://localhost:3000`.
 
 ## Notes
 
-- Authentication uses bcrypt password hashing and JWTs in HttpOnly cookies.
-- Expense queries are scoped to the authenticated user.
-
-- 📝 **No TypeScript** — Written in plain JavaScript.
+Notes
+Authentication uses bcrypt password hashing and JWTs in HttpOnly cookies.
+Expense queries are scoped to the authenticated user.
+📝 No TypeScript — Written in plain JavaScript.
